@@ -25,7 +25,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['title' => 'required|string|max:255']);
+        $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
         Post::create($validated);
         return redirect('/posts')->with('success', 'Post created!');
     }
@@ -37,8 +37,8 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $request->validate(['title' => 'required|string|max:255']);
-        $post->update(['title' => $request->title]);
+        $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
+        $post->update($validated);
         return redirect('/posts')->with('success', 'Post updated!');
     }
 
