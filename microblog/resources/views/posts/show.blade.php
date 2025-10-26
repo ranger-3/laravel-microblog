@@ -5,6 +5,7 @@
     <p><a href="{{ route('posts.index') }}">See all posts</a></p>
     <p>{{ $post->title }}</p>
     <p>{{ $post->content }}</p>
+    <p>Author: {{ $post->user->name ?? 'Unknown' }}</p>
 
     <p><a href="{{ route('posts.edit', $post) }}">Edit</a></p>
     <form action="{{ route('posts.destroy', $post) }}" method="POST">

@@ -26,7 +26,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
-        Post::create($validated);
+        $request->user()->posts()->create($validated);
         return redirect('/posts')->with('success', 'Post created!');
     }
 
