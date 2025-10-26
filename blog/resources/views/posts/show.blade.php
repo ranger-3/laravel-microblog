@@ -4,6 +4,7 @@
     <h3>Info about post (ID: {{ $post->id }})</h3>
     <p><a href="{{ route('posts.index') }}">See all posts</a></p>
     <p>{{ $post->title }}</p>
+    <p>{{ $post->content }}</p>
 
     <p><a href="{{ route('posts.edit', $post) }}">Edit</a></p>
     <form action="{{ route('posts.destroy', $post) }}" method="POST">
@@ -11,5 +12,4 @@
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
-
 @endsection
