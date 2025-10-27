@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
@@ -15,6 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+
         return view('posts.index', compact('posts'));
     }
 
@@ -27,6 +33,7 @@ class PostController extends Controller
     {
         $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
         $request->user()->posts()->create($validated);
+
         return redirect('/posts')->with('success', 'Post created!');
     }
 
@@ -39,12 +46,14 @@ class PostController extends Controller
     {
         $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
         $post->update($validated);
+
         return redirect('/posts')->with('success', 'Post updated!');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
+
         return redirect('/posts')->with('success', 'Post deleted!');
     }
 }
