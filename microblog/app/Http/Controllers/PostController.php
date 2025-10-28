@@ -19,7 +19,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('published', true)->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -31,7 +31,14 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['title' => 'required|string|max:255', 'content' => 'nullable|string']);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'nullable|string',
+            'published' => 'sometimes|boolean',
+        ]);
+
+        $validated['published'] = $request->has('published');
+
         $request->user()->posts()->create($validated);
 
         return redirect('/posts')->with('success', 'Post created!');
