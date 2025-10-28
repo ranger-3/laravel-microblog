@@ -15,7 +15,6 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         User::all()->each(function ($user) {
-
             Post::factory()->count(fake()->numberBetween(2, 5))->create(['user_id' => $user->id]);
         });
     }
