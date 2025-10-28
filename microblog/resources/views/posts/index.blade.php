@@ -14,11 +14,6 @@
         <ul>
             <li>
                 <p><a href="{{ route('posts.show', $post) }}">ID: {{ $post->id }} - {{ $post->title }}</a></p>
-                <form action="{{ route('posts.destroy', $post) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                </form>
             </li>
         </ul>
     @endforeach

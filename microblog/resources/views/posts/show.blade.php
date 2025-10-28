@@ -7,10 +7,15 @@
     <p>{{ $post->content }}</p>
     <p>Author: {{ $post->user->name ?? 'Unknown' }}</p>
 
-    <p><a href="{{ route('posts.edit', $post) }}">Edit</a></p>
+    @can('update', $post)
+        <p><a href="{{ route('posts.edit', $post) }}">Edit</a></p>
+    @endcan
+
+    @can('delete', $post)
     <form action="{{ route('posts.destroy', $post) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
+    @endcan
 @endsection
