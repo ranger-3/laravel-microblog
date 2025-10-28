@@ -12,10 +12,10 @@
     @endcan
 
     @can('delete', $post)
-    <form action="{{ route('posts.destroy', $post) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button>
-    </form>
+        <form action="{{ route('posts.destroy', $post) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
     @endcan
 @endsection

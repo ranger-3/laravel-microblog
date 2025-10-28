@@ -21,6 +21,13 @@
     @enderror
 
     <br><br>
+
+    <label>
+        <input type="checkbox" name="published" value="1" @checked(old('published'))>
+        Published
+    </label>
+
+    <br><br>
     <button type="submit">Save</button>
 </form>
 @endsection
